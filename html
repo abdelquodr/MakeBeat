@@ -1,0 +1,172 @@
+<link rel="stylesheet" href="<%= BASE_URL %>css/bootstrap.min.css" >
+    <link rel="stylesheet" href="<%= BASE_URL %>css/font-awesome.min.css" >
+    <link rel="stylesheet" href="<%= BASE_URL %>css/elegant-icons.css" >
+    <link rel="stylesheet" href="<%= BASE_URL %>css/magnific-popup.css" >
+    <link rel="stylesheet" href="<%= BASE_URL %>css/owl.carousel.min.css" >
+    <link rel="stylesheet" href="<%= BASE_URL %>css/slicknav.min.css" >
+    <link rel="stylesheet" href="<%= BASE_URL %>css/style.css" >
+
+
+
+     <script src="<%= BASE_URL %>js/jquery-3.3.1.min.js"></script>
+    <script src="<%= BASE_URL %>js/bootstrap.min.js"></script>
+    <script src="<%= BASE_URL %>js/jquery.magnific-popup.min.js"></script>
+    <script src="<%= BASE_URL %>js/mixitup.min.js"></script>
+    <script src="<%= BASE_URL %>js/jquery.slicknav.js"></script>
+    <!-- <script src="<%= BASE_URL %>js/owl.carousel.min.js"></script> -->
+    <script src="<%= BASE_URL %>js/main.js"></script>
+
+    <!-- Music Plugin -->
+    <script src="<%= BASE_URL %>js/jquery.jplayer.min.js"></script>
+    <script src="<%= BASE_URL %>js/jplayerInit.js"></script>
+
+
+    /*  ---------------------------------------------------
+    Template Name: Megapod
+    Description: Mogapod Music Tamplate
+    Author: Colorib
+    Author URI: https://www.colorib.com/
+    Version: 1.0
+    Created: Colorib
+---------------------------------------------------------  */
+
+'use strict';
+
+(function ($) {
+
+    /*------------------
+        Preloader
+    --------------------*/
+    $(window).on('load', function () {
+        $(".loader").fadeOut();
+        $("#preloder").delay(200).fadeOut("slow");
+
+        /*------------------
+            Podcast filter
+        --------------------*/
+        $('.filter__controls li').on('click', function () {
+            $('.filter__controls li').removeClass('active');
+            $(this).addClass('active');
+        });
+        if ($('.podcast-filter').length > 0) {
+            var containerEl = document.querySelector('.podcast-filter');
+            var mixer = mixitup(containerEl);
+        }
+    });
+
+    /*------------------
+        Background Set
+    --------------------*/
+    $('.set-bg').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
+
+    /*------------------
+		Navigation
+	--------------------*/
+    $(".mobile-menu").slicknav({
+        prependTo: '#mobile-menu-wrap',
+        allowParentLinks: true
+    });
+
+    //Canvas Menu
+    $(".canvas__open").on('click', function () {
+        $(".offcanvas-menu-wrapper").addClass("active");
+        $(".offcanvas-menu-overlay").addClass("active");
+    });
+
+    $(".offcanvas-menu-overlay").on('click', function () {
+        $(".offcanvas-menu-wrapper").removeClass("active");
+        $(".offcanvas-menu-overlay").removeClass("active");
+    });
+
+    /*------------------
+		Magnific
+	--------------------*/
+    $('.video-popup').magnificPopup({
+        type: 'iframe'
+    });
+
+})(jQuery);
+
+
+
+<div class="single__track">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="single__track__item">
+              <div class="single__track__item__pic">
+                <img src="img/hero/hero-track.jpg" alt="" />
+              </div>
+              <div class="single__track__item__text">
+                <h5>{{audios[0].artistName}} {{audios[0].songDuration}}</h5>
+                <span>{{audios[0].songName}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="single__track__option">
+              <div
+                class="jp-jplayer jplayer"
+                data-ancestor=".jp_container"
+                data-url="music-files/2.mp3"
+              ></div>
+              <div
+                class="jp-audio jp_container"
+                role="application"
+                aria-label="media player"
+              >
+                <div class="jp-gui jp-interface">
+                
+                  <div class="player_controls_box">
+                    <button class="jp-play player_button" tabindex="0">
+                      <i class="fas fa-play"></i>
+                    </button>
+                  </div>
+               
+                  <div class="player_bars">
+                    <div class="jp-progress">
+                      <div class="jp-seek-bar">
+                        <div>
+                          <div class="jp-play-bar">
+                            <div
+                              class="jp-current-time"
+                              role="timer"
+                              aria-label="time"
+                            >
+                              0:00
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="jp-duration ml-auto"
+                      role="timer"
+                      aria-label="duration"
+                    >
+                      {{duration}} 
+                    </div>
+                  </div>
+                 
+                  <div class="jp-volume-controls">
+                    <button class="jp-mute" tabindex="0">
+                      <span class="icon_volume-high"></span>
+                    </button>
+                    <div class="jp-volume-bar">
+                      <div class="jp-volume-bar-value" style="width: 0%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="jp-btns">
+                  <a href="#"><i class="fas fa-share-alt"></i> Share</a>
+                  <a><i class="fas fa-download"></i> Download</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
